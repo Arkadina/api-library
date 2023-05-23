@@ -32,14 +32,23 @@ async function isUserExisting(email) {
 
     if (res === null) {
         return false;
-    } 
-    
+    }
+
     return true;
+}
+
+async function findByEmail(email) {
+    const res = await User.findOne({
+        email,
+    });
+
+    return res;
 }
 
 const UserModel = {
     createUser,
     isUserExisting,
+    findByEmail,
 };
 
 export default UserModel;

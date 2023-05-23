@@ -12,6 +12,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/", authRouter);
 app.use("/book", bookRouter);
 
-app.listen(3005, () => {
+app.listen(3000, () => {
     console.log("[Server] Running on port 3005");
 });
