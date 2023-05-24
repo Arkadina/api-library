@@ -1,4 +1,5 @@
 import express from "express";
+import PostController from "../controllers/postController.js";
 
 const bookRouter = express.Router();
 
@@ -10,9 +11,7 @@ bookRouter.get("/:id", (req, res) => {
     res.send("/book page");
 });
 
-bookRouter.post("/", (req, res) => {
-    res.send("/book page");
-});
+bookRouter.post("/", PostController.createPost);
 
 bookRouter.put("/:id", (req, res) => {
     res.send("/book page");

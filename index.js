@@ -13,5 +13,5 @@ app.use("/", authRouter);
 app.use("/book", bookRouter);
 
 app.listen(3000, () => {
-    console.log("[Server] Running on port 3005");
+    console.log("[Server] Running on port 3000");
 });
