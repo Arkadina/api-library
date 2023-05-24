@@ -3,22 +3,10 @@ import PostController from "../controllers/postController.js";
 
 const bookRouter = express.Router();
 
-bookRouter.get("/", (req, res) => {
-    res.send("/book page");
-});
-
-bookRouter.get("/:id", (req, res) => {
-    res.send("/book page");
-});
-
+bookRouter.get("/", PostController.getPosts);
+bookRouter.get("/:id", PostController.findPost);
 bookRouter.post("/", PostController.createPost);
-
-bookRouter.put("/:id", (req, res) => {
-    res.send("/book page");
-});
-
-bookRouter.delete("/:id", (req, res) => {
-    res.send("/book page");
-});
+bookRouter.put("/:id", PostController.updatePost);
+bookRouter.delete("/:id", PostController.deletePost);
 
 export default bookRouter;
