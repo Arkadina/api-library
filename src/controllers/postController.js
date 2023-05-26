@@ -17,9 +17,10 @@ async function findPost(req, res) {
 }
 
 async function createPost(req, res) {
-    const { title, content, authorId } = req.body;
+    const { _id } = req.jwt;
+    const { title, content } = req.body;
 
-    const post = await PostModel.createPost({ title, content, authorId });
+    const post = await PostModel.createPost({ title, content, authorId: _id });
     return res.status(200).send(post);
 }
 
@@ -30,6 +31,8 @@ async function updatePost(req, res) {
     if (post !== null) {
         return res.status(200).send(post);
     }
+    
+    return res.sendStatus(404);
 }
 
 async function deletePost(req, res) {
