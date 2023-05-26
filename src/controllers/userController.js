@@ -1,3 +1,5 @@
+import jwt from "jsonwebtoken";
+import config from "../config/config.js";
 import UserModel from "../models/userModel.js";
 
 async function Register(req, res) {
@@ -29,7 +31,11 @@ async function Login(req, res) {
     const user = await UserModel.findByEmail(email);
 
     if (user && user.password == password) {
-        return res.status(200).send({ message: "authenticated with success." });
+        const { _id, email, permissionLevel } = user;
+        const payload = { _id, email, permissionLevel };
+        const token = jwt.sign(payload, config.secret_key);
+
+        return res.status(200).send({ token });
     }
 
     return res.status(400).send({ error: "email or password do not match." });
