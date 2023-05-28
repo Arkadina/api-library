@@ -57,6 +57,7 @@ async function updatePost(id, newData) {
         id,
         {
             title: newData?.title,
+            content: newData?.content,
         },
         { new: true }
     );

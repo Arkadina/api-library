@@ -3,30 +3,30 @@ import PostController from "../controllers/postController.js";
 import VerifyAuthorizationMiddleware from "../middlewares/verifyAuthorizationMiddleware.js";
 import PostMiddleware from "../middlewares/postMiddleware.js";
 
-const bookRouter = express.Router();
+const postRouter = express.Router();
 
-bookRouter.get("/", [
+postRouter.get("/", [
     VerifyAuthorizationMiddleware.validJWTNeeded,
     PostController.getPosts,
 ]);
-bookRouter.get("/:id", [
+postRouter.get("/:id", [
     VerifyAuthorizationMiddleware.validJWTNeeded,
     PostMiddleware.verifyIdParam,
     PostController.findPost,
 ]);
-bookRouter.post("/", [
+postRouter.post("/", [
     VerifyAuthorizationMiddleware.validJWTNeeded,
     PostController.createPost,
 ]);
-bookRouter.put("/:id", [
+postRouter.put("/:id", [
     VerifyAuthorizationMiddleware.validJWTNeeded,
     PostMiddleware.verifyIdParam,
     PostController.updatePost,
 ]);
-bookRouter.delete("/:id", [
+postRouter.delete("/:id", [
     VerifyAuthorizationMiddleware.validJWTNeeded,
     PostMiddleware.verifyIdParam,
     PostController.deletePost,
 ]);
 
-export default bookRouter;
+export default postRouter;
